@@ -19,6 +19,9 @@
 
     html { scroll-behavior: smooth; }
 
+    /* offset all anchor targets so fixed nav doesn't cover them */
+    section[id], footer[id] { scroll-margin-top: 80px; }
+
     body {
       font-family: 'Lato', sans-serif;
       color: var(--black);
@@ -522,6 +525,70 @@
       margin-top: 1rem;
     }
 
+    /* ── PARTY BANNER ────────────────────────────────────── */
+    #party-banner {
+      background: var(--lt);
+      border-top: 4px solid var(--red);
+      padding: 5rem 5%;
+      text-align: center;
+    }
+
+    #party-banner .section-label { margin-bottom: 0.75rem; }
+
+    #party-banner h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--black);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    #party-banner p {
+      color: var(--gray);
+      max-width: 580px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .party-services {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .party-tag {
+      background: var(--white);
+      border: 1px solid #DDD;
+      color: var(--gray);
+      font-size: 0.78rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.5rem 1.2rem;
+    }
+
+    .btn-party {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 2px solid var(--black);
+      transition: all 0.2s;
+    }
+
+    .btn-party:hover {
+      background: transparent;
+      color: var(--black);
+    }
+
     /* ── FOOTER ──────────────────────────────────────────── */
     footer {
       background: var(--black);
@@ -968,6 +1035,20 @@
 </section>
 
 
+<!-- ══════════════ PARTY BANNER ══════════════ -->
+<section id="party-banner">
+  <p class="section-label" data-key="party_label">Full Event Experience</p>
+  <h2 data-key="party_title">Need Full Party Service?</h2>
+  <p data-key="party_desc">Chef Manny's catering is also available as part of a complete event package — paired with professional AV rental and full party setup so you can focus on enjoying the night.</p>
+  <div class="party-services">
+    <div class="party-tag" data-key="party_tag1">AV &amp; Sound Equipment</div>
+    <div class="party-tag" data-key="party_tag2">Party Setup &amp; Decor</div>
+    <div class="party-tag" data-key="party_tag3">Chef Manny Catering</div>
+    <div class="party-tag" data-key="party_tag4">Full Event Management</div>
+  </div>
+  <a href="https://m4patron-cmyk.github.io/M.G.P.-AV-Rental-and-Setup-Catering/" target="_blank" class="btn-party" data-key="party_cta">View Full Party Packages</a>
+</section>
+
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer>
   <div class="footer-logo">Chef <span>Manny</span></div>
@@ -1049,6 +1130,11 @@
       success_msg: "Chef Manny's team will be in touch within 24-48 hours.",
       footer_copy: '© 2025 Chef Manny. All rights reserved. Available for private and corporate events.',
       placeholder_chef: 'Chef Photo', placeholder_food: 'Food Photo',
+      party_label: 'Full Event Experience', party_title: 'Need Full Party Service?',
+      party_desc: "Chef Manny's catering is also available as part of a complete event package — paired with professional AV rental and full party setup so you can focus on enjoying the night.",
+      party_tag1: 'AV & Sound Equipment', party_tag2: 'Party Setup & Decor',
+      party_tag3: 'Chef Manny Catering', party_tag4: 'Full Event Management',
+      party_cta: 'View Full Party Packages',
     },
     es: {
       nav_about: 'Acerca de', nav_services: 'Servicios', nav_menu: 'Menu',
@@ -1111,6 +1197,11 @@
       success_msg: 'El equipo del Chef Manny estara en contacto en 24-48 horas.',
       footer_copy: '© 2025 Chef Manny. Todos los derechos reservados. Disponible para eventos privados y corporativos.',
       placeholder_chef: 'Foto del Chef', placeholder_food: 'Foto de Comida',
+      party_label: 'Experiencia Completa de Evento', party_title: 'Necesitas Servicio de Fiesta Completo?',
+      party_desc: 'El catering del Chef Manny tambien esta disponible como parte de un paquete de evento completo, junto con renta de equipo de audio y video y montaje de fiesta para que puedas disfrutar la noche.',
+      party_tag1: 'Equipo de Audio y Video', party_tag2: 'Montaje y Decoracion',
+      party_tag3: 'Catering Chef Manny', party_tag4: 'Gestion Completa del Evento',
+      party_cta: 'Ver Paquetes Completos de Fiesta',
     }
   };
 
