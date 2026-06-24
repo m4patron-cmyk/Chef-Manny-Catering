@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chef Manny - Private Chef & Catering</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #B91C1C;
+      --red-dk: #7F1D1D;
+      --black:  #111111;
+      --gray:   #444444;
+      --lt:     #F5F5F5;
+      --white:  #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--black);
+      background: var(--white);
+    }
+
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+    /* ── NAVBAR ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: var(--white);
+      border-bottom: 2px solid var(--red);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: 1px;
+    }
+
+    .nav-logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none; align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--black);
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--red); }
+
+    .btn-translate {
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.8rem;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-translate:hover { background: var(--red); }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    #hero {
+      margin-top: 70px;
+      min-height: 92vh;
+      background: var(--black);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 4rem 5%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 60px,
+        rgba(185,28,28,0.04) 60px,
+        rgba(185,28,28,0.04) 61px
+      );
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    #hero h1 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    #hero h1 em {
+      color: var(--red);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #AAAAAA;
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: flex; gap: 3rem; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .stat-num span { color: var(--red); }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      margin-top: 0.2rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 2px solid var(--red);
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--red);
+    }
+
+    /* ── SECTION BASE ─────────────────────────────────────── */
+    section { padding: 6rem 5%; }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--black);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .section-rule {
+      width: 50px; height: 3px;
+      background: var(--red);
+      margin-bottom: 2rem;
+    }
+
+    .section-rule.center { margin: 0 auto 2rem; }
+
+    .text-center { text-align: center; }
+
+    /* ── ABOUT ───────────────────────────────────────────── */
+    #about {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .img-placeholder {
+      width: 100%;
+      background: var(--lt);
+      border: 2px dashed #CCCCCC;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #999;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .img-placeholder svg {
+      width: 40px; height: 40px;
+      stroke: #BBBBBB;
+      margin-bottom: 0.75rem;
+    }
+
+    .about-img-wrap .img-placeholder { aspect-ratio: 4/5; }
+
+    .about-accent {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 60%; height: 60%;
+      border: 3px solid var(--red);
+      z-index: -1;
+    }
+
+    .about-text p {
+      color: var(--gray);
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .about-text p:last-of-type { margin-bottom: 2rem; }
+
+    /* ── SERVICES ────────────────────────────────────────── */
+    #services { background: var(--lt); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      border-top: 4px solid var(--red);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    .service-icon {
+      width: 44px; height: 44px;
+      margin-bottom: 1.2rem;
+      stroke: var(--red);
+      fill: none;
+    }
+
+    .service-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      color: var(--black);
+    }
+
+    .service-card p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ── MENU ────────────────────────────────────────────── */
+    #menu { background: var(--black); }
+
+    #menu .section-title { color: var(--white); }
+
+    #menu .section-label { color: var(--red); }
+
+    .menu-intro {
+      color: #AAAAAA;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .menu-category h3 {
+      font-size: 1.1rem;
+      color: var(--red);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #333;
+    }
+
+    .menu-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #222;
+    }
+
+    .menu-item-name {
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+    }
+
+    .menu-item-desc {
+      color: #777;
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
+    }
+
+    /* ── GALLERY ─────────────────────────────────────────── */
+    #gallery { background: var(--white); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item { overflow: hidden; }
+
+    .gallery-item .img-placeholder {
+      aspect-ratio: 1;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:nth-child(1) { grid-column: span 2; }
+    .gallery-item:nth-child(1) .img-placeholder { aspect-ratio: 2/1; }
+
+    .gallery-item:nth-child(5) { grid-column: span 2; }
+    .gallery-item:nth-child(5) .img-placeholder { aspect-ratio: 2/1; }
+
+    /* ── TESTIMONIALS ────────────────────────────────────── */
+    #testimonials { background: var(--lt); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      padding: 2.5rem;
+      border-left: 4px solid var(--red);
+      position: relative;
+    }
+
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: var(--red);
+      opacity: 0.15;
+      line-height: 1;
+      position: absolute;
+      top: 0.5rem; left: 1.5rem;
+    }
+
+    .testimonial-text {
+      color: var(--gray);
+      line-height: 1.8;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-author { font-weight: 700; color: var(--black); font-size: 0.9rem; }
+
+    .testimonial-role { color: #999; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* ── BOOKING ─────────────────────────────────────────── */
+    #booking { background: var(--white); }
+
+    .booking-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .booking-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--black);
+    }
+
+    .booking-info p {
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-line {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1rem;
+      color: var(--gray); font-size: 0.9rem;
+    }
+
+    .contact-line svg {
+      width: 18px; height: 18px; stroke: var(--red); flex-shrink: 0;
+    }
+
+    .contact-line a { color: var(--gray); text-decoration: none; }
+    .contact-line a:hover { color: var(--red); }
+
+    .booking-form { background: var(--lt); padding: 3rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { margin-bottom: 1.25rem; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid #DDDDDD;
+      background: var(--white);
+      padding: 0.75rem 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--red); }
+
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      padding: 1rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover { background: var(--red-dk); }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: #999;
+      margin-top: 0.75rem;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .form-success {
+      display: none;
+      background: #F0FFF4;
+      border: 1px solid #6EE7B7;
+      color: #065F46;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      color: #999;
+      text-align: center;
+      padding: 3rem 5%;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo span { color: var(--red); }
+
+    footer p { font-size: 0.85rem; line-height: 1.8; }
+
+    .footer-links {
+      display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+      margin: 1.5rem 0;
+      list-style: none;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #777;
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--red); }
+
+    .footer-divider {
+      width: 40px; height: 2px;
+      background: var(--red);
+      margin: 1.5rem auto;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      #about { grid-template-columns: 1fr; gap: 3rem; }
+      .about-accent { display: none; }
+      .booking-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(5) { grid-column: span 1; }
+      .gallery-item:nth-child(1) .img-placeholder,
+      .gallery-item:nth-child(5) .img-placeholder { aspect-ratio: 1; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2rem; }
+      .booking-form { padding: 2rem 1.5rem; }
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav>
+  <div class="nav-logo">Chef <span>Manny</span></div>
+  <ul class="nav-links">
+    <li><a href="#about"        data-key="nav_about">About</a></li>
+    <li><a href="#services"     data-key="nav_services">Services</a></li>
+    <li><a href="#menu"         data-key="nav_menu">Menu</a></li>
+    <li><a href="#gallery"      data-key="nav_gallery">Gallery</a></li>
+    <li><a href="#testimonials" data-key="nav_testimonials">Testimonials</a></li>
+    <li><a href="#booking"      data-key="nav_booking">Book Now</a></li>
+  </ul>
+  <button class="btn-translate" id="translateBtn" onclick="toggleLang()">Espanol</button>
+</nav>
+
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero">
+  <p class="hero-eyebrow" data-key="hero_eyebrow">Private Chef &amp; Master Caterer</p>
+  <h1 data-key="hero_h1">Culinary Excellence,<br><em>Crafted for You</em></h1>
+  <p class="hero-sub" data-key="hero_sub">From intimate private dinners to large-scale events, Chef Manny brings decades of professional kitchen experience directly to your table.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">1000<span>+</span></div>
+      <div class="stat-label" data-key="stat_guests">Guests Served</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">20<span>+</span></div>
+      <div class="stat-label" data-key="stat_years">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5<span>+</span></div>
+      <div class="stat-label" data-key="stat_restaurants">Restaurants</div>
+    </div>
+  </div>
+  <a href="#booking" class="btn-primary" data-key="hero_cta">Reserve Your Event</a>
+</section>
+
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<section id="about">
+  <div class="about-img-wrap">
+    <div class="img-placeholder" style="aspect-ratio:4/5;">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+      </svg>
+      <span data-key="placeholder_chef">Chef Photo</span>
+    </div>
+    <div class="about-accent"></div>
+  </div>
+  <div class="about-text">
+    <p class="section-label" data-key="about_label">About Chef Manny</p>
+    <h2 class="section-title" data-key="about_title">A Lifetime Devoted to the Art of Food</h2>
+    <div class="section-rule"></div>
+    <p data-key="about_p1">Chef Manny is a culinary professional with over two decades of experience cooking at the highest levels. His career has taken him through the kitchens of acclaimed restaurants, where he led and crafted menus that defined each establishment's identity.</p>
+    <p data-key="about_p2">Known for his refined palate and dedication to fresh, quality ingredients, Manny has had the privilege of cooking for some of the most discerning clients — from business executives and celebrities to large corporate galas and private weddings.</p>
+    <p data-key="about_p3">Today, he brings that same level of professionalism, creativity, and passion directly to your event — no matter the size or occasion.</p>
+    <a href="#booking" class="btn-primary" data-key="about_cta">Work With Manny</a>
+  </div>
+</section>
+
+
+<!-- ══════════════ SERVICES ══════════════ -->
+<section id="services">
+  <div class="text-center">
+    <p class="section-label" data-key="services_label">What We Offer</p>
+    <h2 class="section-title" data-key="services_title">Services Tailored to Every Occasion</h2>
+    <div class="section-rule center"></div>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12h18M3 6h18M3 18h18"/>
+      </svg>
+      <h3 data-key="svc1_title">Private Dining</h3>
+      <p data-key="svc1_desc">An intimate, restaurant-quality dining experience in the comfort of your home. Chef Manny designs a custom menu and handles every detail of the evening.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      <h3 data-key="svc2_title">Corporate Events</h3>
+      <p data-key="svc2_desc">From executive lunches to large company galas, Manny has catered events for 1,000+ guests with the precision and quality of a fine dining kitchen.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+      <h3 data-key="svc3_title">Weddings &amp; Celebrations</h3>
+      <p data-key="svc3_desc">Your most important day deserves an unforgettable meal. Chef Manny collaborates with you to create a menu as unique and memorable as your celebration.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+      </svg>
+      <h3 data-key="svc4_title">Pop-Up &amp; Restaurant Consulting</h3>
+      <p data-key="svc4_desc">Drawing from his experience running restaurant menus, Chef Manny offers menu development and kitchen consulting for aspiring and established restaurants.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+      </svg>
+      <h3 data-key="svc5_title">Meal Prep &amp; Weekly Chef</h3>
+      <p data-key="svc5_desc">Enjoy chef-crafted meals all week long. Manny can come to your home weekly to prepare nutritious, restaurant-quality meals tailored to your dietary needs.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      </svg>
+      <h3 data-key="svc6_title">Custom Menus</h3>
+      <p data-key="svc6_desc">Every event is different. Chef Manny works directly with clients to design a fully custom menu — from cuisine style to dietary restrictions and presentation.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════ MENU ══════════════ -->
+<section id="menu">
+  <div class="text-center">
+    <p class="section-label" data-key="menu_label">Sample Menu</p>
+    <h2 class="section-title" data-key="menu_title">A Taste of What's Possible</h2>
+    <div class="section-rule center"></div>
+    <p class="menu-intro" data-key="menu_intro">Chef Manny crafts menus across a wide range of cuisines and styles. Below is a sample of the dishes he can prepare — every menu is tailored to your event.</p>
+  </div>
+  <div class="menu-grid">
+
+    <div class="menu-category">
+      <h3 data-key="menu_starters">Starters</h3>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m1n">Shrimp Ceviche</div><div class="menu-item-desc" data-key="m1d">Citrus-cured, avocado, micro cilantro</div></div></div>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m2n">Beef Carpaccio</div><div class="menu-item-desc" data-key="m2d">Shaved Wagyu, capers, truffle oil, arugula</div></div></div>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m3n">Roasted Beet Salad</div><div class="menu-item-desc" data-key="m3d">Goat cheese, candied walnuts, balsamic</div></div></div>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m4n">Lobster Bisque</div><div class="menu-item-desc" data-key="m4d">Rich cream base, brandy, chive oil</div></div></div>
+    </div>
+
+    <div class="menu-category">
+      <h3 data-key="menu_mains">Main Course</h3>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m5n">Filet Mignon</div><div class="menu-item-desc" data-key="m5d">Red wine demi-glace, truffle pomme puree</div></div></div>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m6n">Pan-Seared Chilean Sea Bass</div><div class="menu-item-desc" data-key="m6d">Miso glaze, bok choy, jasmine rice</div></div></div>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m7n">Braised Short Rib</div><div class="menu-item-desc" data-key="m7d">72-hour braise, roasted garlic polenta</div></div></div>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m8n">Chicken Picata</div><div class="menu-item-desc" data-key="m8d">Lemon-caper butter, angel hair pasta</div></div></div>
+    </div>
+
+    <div class="menu-category">
+      <h3 data-key="menu_desserts">Desserts</h3>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m9n">Chocolate Lava Cake</div><div class="menu-item-desc" data-key="m9d">Warm center, vanilla bean ice cream</div></div></div>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m10n">Crème Brulée</div><div class="menu-item-desc" data-key="m10d">Classic French, seasonal fruit garnish</div></div></div>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m11n">Tres Leches Cake</div><div class="menu-item-desc" data-key="m11d">Light sponge, whipped cream, cinnamon</div></div></div>
+      <div class="menu-item"><div><div class="menu-item-name" data-key="m12n">Churro Bites</div><div class="menu-item-desc" data-key="m12d">Cinnamon sugar, dark chocolate dipping sauce</div></div></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════ GALLERY ══════════════ -->
+<section id="gallery">
+  <div class="text-center">
+    <p class="section-label" data-key="gallery_label">Gallery</p>
+    <h2 class="section-title" data-key="gallery_title">The Food Speaks for Itself</h2>
+    <div class="section-rule center"></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="img-placeholder" style="aspect-ratio:2/1;">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span data-key="placeholder_food">Food Photo</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="img-placeholder" style="aspect-ratio:1;">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span data-key="placeholder_food">Food Photo</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="img-placeholder" style="aspect-ratio:1;">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span data-key="placeholder_food">Food Photo</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="img-placeholder" style="aspect-ratio:1;">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span data-key="placeholder_food">Food Photo</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="img-placeholder" style="aspect-ratio:2/1;">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span data-key="placeholder_food">Food Photo</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="img-placeholder" style="aspect-ratio:1;">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span data-key="placeholder_food">Food Photo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ TESTIMONIALS ══════════════ -->
+<section id="testimonials">
+  <div class="text-center">
+    <p class="section-label" data-key="test_label">Testimonials</p>
+    <h2 class="section-title" data-key="test_title">What Clients Are Saying</h2>
+    <div class="section-rule center"></div>
+  </div>
+  <div class="testimonials-grid">
+
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text" data-key="t1_text">Chef Manny catered our annual company gala for over 400 guests. The food was extraordinary — every plate looked like fine dining and tasted even better. We will absolutely be booking him again.</p>
+      <div class="testimonial-author" data-key="t1_author">James R.</div>
+      <div class="testimonial-role" data-key="t1_role">CEO, Corporate Event</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text" data-key="t2_text">We hired Manny for our wedding reception and he completely exceeded our expectations. The menu he designed was personal, creative, and absolutely delicious. Our guests are still talking about it.</p>
+      <div class="testimonial-author" data-key="t2_author">Sofia &amp; Daniel M.</div>
+      <div class="testimonial-role" data-key="t2_role">Wedding Reception</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text" data-key="t3_text">Having Chef Manny cook for us privately is one of the best decisions we've made. It's like having a Michelin-star restaurant come to your home. Professional, punctual, and the food is incredible every time.</p>
+      <div class="testimonial-author" data-key="t3_author">Victoria L.</div>
+      <div class="testimonial-role" data-key="t3_role">Private Dinner Client</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════ BOOKING ══════════════ -->
+<section id="booking">
+  <p class="section-label" data-key="booking_label">Book Your Event</p>
+  <h2 class="section-title" data-key="booking_title">Let's Create Something Memorable</h2>
+  <div class="section-rule"></div>
+
+  <div class="booking-wrap">
+    <div class="booking-info">
+      <h3 data-key="booking_info_h3">Ready to get started?</h3>
+      <p data-key="booking_info_p">Fill out the form and Chef Manny's team will reach out within 24-48 hours to discuss your event, confirm availability, and begin crafting a custom menu for you.</p>
+
+      <div class="contact-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <a href="mailto:bookings@chefmanny.com">bookings@chefmanny.com</a>
+      </div>
+
+      <div class="contact-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 5.99 5.99l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span data-key="contact_phone">(555) 000-0000</span>
+      </div>
+
+      <div class="contact-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span data-key="contact_location">Available Throughout the Area</span>
+      </div>
+    </div>
+
+    <!--
+      BOOKING FORM SETUP:
+      1. Go to https://formspree.io and create a free account
+      2. Create a new form and copy your Form ID
+      3. Replace "YOUR_FORM_ID" in the action URL below with your actual Form ID
+      4. Formspree will forward all submissions to your registered email
+    -->
+    <div class="booking-form">
+      <form id="bookingForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname" data-key="form_fname">First Name</label>
+            <input type="text" id="fname" name="first_name" required placeholder="John" />
+          </div>
+          <div class="form-group">
+            <label for="lname" data-key="form_lname">Last Name</label>
+            <input type="text" id="lname" name="last_name" required placeholder="Smith" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email" data-key="form_email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="john@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="phone" data-key="form_phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="event_date" data-key="form_date">Event Date</label>
+            <input type="date" id="event_date" name="event_date" required />
+          </div>
+          <div class="form-group">
+            <label for="guests" data-key="form_guests">Number of Guests</label>
+            <input type="number" id="guests" name="guests" min="1" placeholder="e.g. 50" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="event_type" data-key="form_event_type">Event Type</label>
+            <select id="event_type" name="event_type" required>
+              <option value="" data-key="form_select">-- Select --</option>
+              <option value="private_dinner" data-key="form_opt1">Private Dinner</option>
+              <option value="wedding" data-key="form_opt2">Wedding</option>
+              <option value="corporate" data-key="form_opt3">Corporate Event</option>
+              <option value="birthday" data-key="form_opt4">Birthday / Celebration</option>
+              <option value="meal_prep" data-key="form_opt5">Weekly Meal Prep</option>
+              <option value="other" data-key="form_opt6">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="budget" data-key="form_budget">Estimated Budget</label>
+            <select id="budget" name="budget">
+              <option value="" data-key="form_select">-- Select --</option>
+              <option value="under_500">Under $500</option>
+              <option value="500_1500">$500 - $1,500</option>
+              <option value="1500_5000">$1,500 - $5,000</option>
+              <option value="5000_plus">$5,000+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="location" data-key="form_location">Event Location / City</label>
+          <input type="text" id="location" name="location" placeholder="e.g. Miami, FL" />
+        </div>
+
+        <div class="form-group">
+          <label for="dietary" data-key="form_dietary">Dietary Restrictions or Preferences</label>
+          <input type="text" id="dietary" name="dietary" placeholder="e.g. Gluten-free, Vegan, Nut allergy" />
+        </div>
+
+        <div class="form-group">
+          <label for="message" data-key="form_message">Tell Us About Your Event</label>
+          <textarea id="message" name="message" placeholder="Share any additional details, vision, or questions for Chef Manny..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" data-key="form_submit">Send Booking Request</button>
+        <p class="form-note" data-key="form_note">We'll respond within 24-48 hours to confirm availability and begin planning your custom menu.</p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <strong data-key="success_title">Thank you! Your request has been received.</strong><br>
+        <span data-key="success_msg">Chef Manny's team will be in touch within 24-48 hours.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="footer-logo">Chef <span>Manny</span></div>
+  <div class="footer-divider"></div>
+  <ul class="footer-links">
+    <li><a href="#about"        data-key="nav_about">About</a></li>
+    <li><a href="#services"     data-key="nav_services">Services</a></li>
+    <li><a href="#menu"         data-key="nav_menu">Menu</a></li>
+    <li><a href="#gallery"      data-key="nav_gallery">Gallery</a></li>
+    <li><a href="#testimonials" data-key="nav_testimonials">Testimonials</a></li>
+    <li><a href="#booking"      data-key="nav_booking">Book Now</a></li>
+  </ul>
+  <p data-key="footer_copy">&copy; 2025 Chef Manny. All rights reserved. Available for private and corporate events.</p>
+</footer>
+
+
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
+  /* ─── Translation Data ─── */
+  const translations = {
+    en: {
+      nav_about: 'About', nav_services: 'Services', nav_menu: 'Menu',
+      nav_gallery: 'Gallery', nav_testimonials: 'Testimonials', nav_booking: 'Book Now',
+      hero_eyebrow: 'Private Chef & Master Caterer',
+      hero_h1: 'Culinary Excellence,<br><em>Crafted for You</em>',
+      hero_sub: 'From intimate private dinners to large-scale events, Chef Manny brings decades of professional kitchen experience directly to your table.',
+      stat_guests: 'Guests Served', stat_years: 'Years Experience', stat_restaurants: 'Restaurants',
+      hero_cta: 'Reserve Your Event',
+      about_label: 'About Chef Manny', about_title: 'A Lifetime Devoted to the Art of Food',
+      about_p1: 'Chef Manny is a culinary professional with over two decades of experience cooking at the highest levels. His career has taken him through the kitchens of acclaimed restaurants, where he led and crafted menus that defined each establishment\'s identity.',
+      about_p2: 'Known for his refined palate and dedication to fresh, quality ingredients, Manny has had the privilege of cooking for some of the most discerning clients — from business executives and celebrities to large corporate galas and private weddings.',
+      about_p3: 'Today, he brings that same level of professionalism, creativity, and passion directly to your event — no matter the size or occasion.',
+      about_cta: 'Work With Manny',
+      services_label: 'What We Offer', services_title: 'Services Tailored to Every Occasion',
+      svc1_title: 'Private Dining', svc1_desc: 'An intimate, restaurant-quality dining experience in the comfort of your home. Chef Manny designs a custom menu and handles every detail of the evening.',
+      svc2_title: 'Corporate Events', svc2_desc: 'From executive lunches to large company galas, Manny has catered events for 1,000+ guests with the precision and quality of a fine dining kitchen.',
+      svc3_title: 'Weddings & Celebrations', svc3_desc: 'Your most important day deserves an unforgettable meal. Chef Manny collaborates with you to create a menu as unique and memorable as your celebration.',
+      svc4_title: 'Pop-Up & Restaurant Consulting', svc4_desc: 'Drawing from his experience running restaurant menus, Chef Manny offers menu development and kitchen consulting for aspiring and established restaurants.',
+      svc5_title: 'Meal Prep & Weekly Chef', svc5_desc: 'Enjoy chef-crafted meals all week long. Manny can come to your home weekly to prepare nutritious, restaurant-quality meals tailored to your dietary needs.',
+      svc6_title: 'Custom Menus', svc6_desc: 'Every event is different. Chef Manny works directly with clients to design a fully custom menu — from cuisine style to dietary restrictions and presentation.',
+      menu_label: 'Sample Menu', menu_title: "A Taste of What's Possible",
+      menu_intro: 'Chef Manny crafts menus across a wide range of cuisines and styles. Below is a sample of the dishes he can prepare — every menu is tailored to your event.',
+      menu_starters: 'Starters', menu_mains: 'Main Course', menu_desserts: 'Desserts',
+      m1n: 'Shrimp Ceviche', m1d: 'Citrus-cured, avocado, micro cilantro',
+      m2n: 'Beef Carpaccio', m2d: 'Shaved Wagyu, capers, truffle oil, arugula',
+      m3n: 'Roasted Beet Salad', m3d: 'Goat cheese, candied walnuts, balsamic',
+      m4n: 'Lobster Bisque', m4d: 'Rich cream base, brandy, chive oil',
+      m5n: 'Filet Mignon', m5d: 'Red wine demi-glace, truffle pomme puree',
+      m6n: 'Pan-Seared Chilean Sea Bass', m6d: 'Miso glaze, bok choy, jasmine rice',
+      m7n: 'Braised Short Rib', m7d: '72-hour braise, roasted garlic polenta',
+      m8n: 'Chicken Picata', m8d: 'Lemon-caper butter, angel hair pasta',
+      m9n: 'Chocolate Lava Cake', m9d: 'Warm center, vanilla bean ice cream',
+      m10n: 'Crème Brulée', m10d: 'Classic French, seasonal fruit garnish',
+      m11n: 'Tres Leches Cake', m11d: 'Light sponge, whipped cream, cinnamon',
+      m12n: 'Churro Bites', m12d: 'Cinnamon sugar, dark chocolate dipping sauce',
+      gallery_label: 'Gallery', gallery_title: 'The Food Speaks for Itself',
+      test_label: 'Testimonials', test_title: "What Clients Are Saying",
+      t1_text: 'Chef Manny catered our annual company gala for over 400 guests. The food was extraordinary — every plate looked like fine dining and tasted even better. We will absolutely be booking him again.',
+      t1_author: 'James R.', t1_role: 'CEO, Corporate Event',
+      t2_text: 'We hired Manny for our wedding reception and he completely exceeded our expectations. The menu he designed was personal, creative, and absolutely delicious. Our guests are still talking about it.',
+      t2_author: 'Sofia & Daniel M.', t2_role: 'Wedding Reception',
+      t3_text: 'Having Chef Manny cook for us privately is one of the best decisions we\'ve made. It\'s like having a Michelin-star restaurant come to your home. Professional, punctual, and the food is incredible every time.',
+      t3_author: 'Victoria L.', t3_role: 'Private Dinner Client',
+      booking_label: 'Book Your Event', booking_title: "Let's Create Something Memorable",
+      booking_info_h3: 'Ready to get started?',
+      booking_info_p: "Fill out the form and Chef Manny's team will reach out within 24-48 hours to discuss your event, confirm availability, and begin crafting a custom menu for you.",
+      contact_phone: '(555) 000-0000', contact_location: 'Available Throughout the Area',
+      form_fname: 'First Name', form_lname: 'Last Name', form_email: 'Email Address',
+      form_phone: 'Phone Number', form_date: 'Event Date', form_guests: 'Number of Guests',
+      form_event_type: 'Event Type', form_budget: 'Estimated Budget',
+      form_select: '-- Select --',
+      form_opt1: 'Private Dinner', form_opt2: 'Wedding', form_opt3: 'Corporate Event',
+      form_opt4: 'Birthday / Celebration', form_opt5: 'Weekly Meal Prep', form_opt6: 'Other',
+      form_location: 'Event Location / City', form_dietary: 'Dietary Restrictions or Preferences',
+      form_message: 'Tell Us About Your Event',
+      form_submit: 'Send Booking Request',
+      form_note: "We'll respond within 24-48 hours to confirm availability and begin planning your custom menu.",
+      success_title: 'Thank you! Your request has been received.',
+      success_msg: "Chef Manny's team will be in touch within 24-48 hours.",
+      footer_copy: '© 2025 Chef Manny. All rights reserved. Available for private and corporate events.',
+      placeholder_chef: 'Chef Photo', placeholder_food: 'Food Photo',
+    },
+    es: {
+      nav_about: 'Acerca de', nav_services: 'Servicios', nav_menu: 'Menu',
+      nav_gallery: 'Galeria', nav_testimonials: 'Testimonios', nav_booking: 'Reservar',
+      hero_eyebrow: 'Chef Privado y Maestro de Catering',
+      hero_h1: 'Excelencia Culinaria,<br><em>Creada para Ti</em>',
+      hero_sub: 'Desde cenas privadas intimas hasta eventos de gran escala, el Chef Manny trae decadas de experiencia profesional directamente a tu mesa.',
+      stat_guests: 'Comensales Atendidos', stat_years: 'Anos de Experiencia', stat_restaurants: 'Restaurantes',
+      hero_cta: 'Reserva Tu Evento',
+      about_label: 'Acerca del Chef Manny', about_title: 'Una Vida Dedicada al Arte de la Cocina',
+      about_p1: 'El Chef Manny es un profesional culinario con mas de dos decadas de experiencia cocinando al mas alto nivel. Su carrera lo ha llevado por las cocinas de restaurantes aclamados, donde lidero y creo menus que definieron la identidad de cada establecimiento.',
+      about_p2: 'Conocido por su paladar refinado y su dedicacion a ingredientes frescos y de calidad, Manny ha tenido el privilegio de cocinar para algunos de los clientes mas exigentes, desde ejecutivos de negocios y celebridades hasta grandes galas corporativas y bodas privadas.',
+      about_p3: 'Hoy en dia, lleva ese mismo nivel de profesionalismo, creatividad y pasion directamente a tu evento, sin importar el tamano o la ocasion.',
+      about_cta: 'Trabaja con Manny',
+      services_label: 'Lo Que Ofrecemos', services_title: 'Servicios a la Medida de Cada Ocasion',
+      svc1_title: 'Cenas Privadas', svc1_desc: 'Una experiencia gastronómica intima y de calidad restaurantera en la comodidad de tu hogar. El Chef Manny diseña un menu personalizado y se encarga de cada detalle de la velada.',
+      svc2_title: 'Eventos Corporativos', svc2_desc: 'Desde almuerzos ejecutivos hasta grandes galas empresariales, Manny ha catering para mas de 1,000 comensales con la precision y calidad de una cocina de alta gastronomia.',
+      svc3_title: 'Bodas y Celebraciones', svc3_desc: 'Tu dia mas importante merece una comida inolvidable. El Chef Manny colabora contigo para crear un menu tan unico y memorable como tu celebracion.',
+      svc4_title: 'Consultoria para Restaurantes', svc4_desc: 'Con su experiencia dirigiendo menus de restaurantes, el Chef Manny ofrece desarrollo de menus y consultoria de cocina para restaurantes en crecimiento y establecimientos existentes.',
+      svc5_title: 'Preparacion de Comidas Semanales', svc5_desc: 'Disfruta de comidas elaboradas por un chef toda la semana. Manny puede ir a tu hogar semanalmente para preparar comidas nutritivas y de calidad adaptadas a tus necesidades dieteticas.',
+      svc6_title: 'Menus Personalizados', svc6_desc: 'Cada evento es diferente. El Chef Manny trabaja directamente con los clientes para disenar un menu completamente personalizado, desde el estilo de cocina hasta las restricciones dieteticas y la presentacion.',
+      menu_label: 'Menu de Muestra', menu_title: 'Un Anticipo de lo Posible',
+      menu_intro: 'El Chef Manny crea menus de una amplia variedad de cocinas y estilos. A continuacion hay una muestra de los platos que puede preparar; cada menu se adapta a tu evento.',
+      menu_starters: 'Entradas', menu_mains: 'Plato Principal', menu_desserts: 'Postres',
+      m1n: 'Ceviche de Camaron', m1d: 'Curado en citricos, aguacate, cilantro micro',
+      m2n: 'Carpaccio de Res', m2d: 'Wagyu rebanado, alcaparras, aceite de trufa, arugula',
+      m3n: 'Ensalada de Betabel Asado', m3d: 'Queso de cabra, nueces garrapiñadas, balsamico',
+      m4n: 'Bisque de Langosta', m4d: 'Base de crema rica, brandy, aceite de cebollino',
+      m5n: 'Filete Mignon', m5d: 'Demi-glace de vino tinto, pure de papa con trufa',
+      m6n: 'Robalo Chileno a la Sarten', m6d: 'Glaseado de miso, bok choy, arroz jazmin',
+      m7n: 'Costilla Corta Estofada', m7d: 'Estofado de 72 horas, polenta con ajo asado',
+      m8n: 'Pollo a la Picata', m8d: 'Mantequilla de limon y alcaparras, pasta cabello de angel',
+      m9n: 'Pastel de Lava de Chocolate', m9d: 'Centro caliente, helado de vainilla',
+      m10n: 'Crème Brulée', m10d: 'Frances clasico, fruta de temporada',
+      m11n: 'Pastel Tres Leches', m11d: 'Esponja ligera, crema batida, canela',
+      m12n: 'Churros', m12d: 'Azucar con canela, salsa de chocolate oscuro',
+      gallery_label: 'Galeria', gallery_title: 'La Comida Habla por Si Misma',
+      test_label: 'Testimonios', test_title: 'Lo Que Dicen Nuestros Clientes',
+      t1_text: 'El Chef Manny hizo el catering de nuestra gala anual de empresa para mas de 400 invitados. La comida fue extraordinaria: cada plato parecia de alta gastronomia y sabia aun mejor. Definitivamente lo contrataremos de nuevo.',
+      t1_author: 'James R.', t1_role: 'Director Ejecutivo, Evento Corporativo',
+      t2_text: 'Contratamos a Manny para la recepcion de nuestra boda y supero completamente nuestras expectativas. El menu que diseño fue personal, creativo y absolutamente delicioso. Nuestros invitados todavia hablan de ello.',
+      t2_author: 'Sofia y Daniel M.', t2_role: 'Recepcion de Boda',
+      t3_text: 'Tener al Chef Manny cocinando para nosotros de forma privada es una de las mejores decisiones que hemos tomado. Es como tener un restaurante de estrella Michelin en tu casa. Profesional, puntual y la comida es increible cada vez.',
+      t3_author: 'Victoria L.', t3_role: 'Cliente de Cena Privada',
+      booking_label: 'Reserva Tu Evento', booking_title: 'Creemos Algo Memorable Juntos',
+      booking_info_h3: 'Listo para empezar?',
+      booking_info_p: 'Completa el formulario y el equipo del Chef Manny se comunicara contigo en 24-48 horas para hablar sobre tu evento, confirmar disponibilidad y comenzar a crear un menu personalizado.',
+      contact_phone: '(555) 000-0000', contact_location: 'Disponible en Toda el Area',
+      form_fname: 'Nombre', form_lname: 'Apellido', form_email: 'Correo Electronico',
+      form_phone: 'Numero de Telefono', form_date: 'Fecha del Evento', form_guests: 'Numero de Invitados',
+      form_event_type: 'Tipo de Evento', form_budget: 'Presupuesto Estimado',
+      form_select: '-- Seleccionar --',
+      form_opt1: 'Cena Privada', form_opt2: 'Boda', form_opt3: 'Evento Corporativo',
+      form_opt4: 'Cumpleanos / Celebracion', form_opt5: 'Preparacion de Comidas Semanales', form_opt6: 'Otro',
+      form_location: 'Lugar del Evento / Ciudad', form_dietary: 'Restricciones o Preferencias Dieteticas',
+      form_message: 'Cuentanos sobre tu Evento',
+      form_submit: 'Enviar Solicitud de Reserva',
+      form_note: 'Responderemos en 24-48 horas para confirmar disponibilidad y comenzar a planificar tu menu personalizado.',
+      success_title: 'Gracias! Tu solicitud ha sido recibida.',
+      success_msg: 'El equipo del Chef Manny estara en contacto en 24-48 horas.',
+      footer_copy: '© 2025 Chef Manny. Todos los derechos reservados. Disponible para eventos privados y corporativos.',
+      placeholder_chef: 'Foto del Chef', placeholder_food: 'Foto de Comida',
+    }
+  };
+
+  let currentLang = 'en';
+
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'es' : 'en';
+    const btn = document.getElementById('translateBtn');
+    btn.textContent = currentLang === 'en' ? 'Espanol' : 'English';
+    document.documentElement.lang = currentLang;
+    applyTranslations(currentLang);
+  }
+
+  function applyTranslations(lang) {
+    const t = translations[lang];
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const key = el.getAttribute('data-key');
+      if (!t[key]) return;
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        // skip — placeholders are static
+      } else if (el.tagName === 'OPTION') {
+        el.textContent = t[key];
+      } else {
+        el.innerHTML = t[key];
+      }
+    });
+  }
+
+  /* ─── Form Submission ─── */
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('bookingForm');
+    const successEl = document.getElementById('formSuccess');
+    const btn = form.querySelector('.btn-submit');
+
+    btn.textContent = currentLang === 'en' ? 'Sending...' : 'Enviando...';
+    btn.disabled = true;
+
+    try {
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      btn.textContent = currentLang === 'en' ? 'Send Booking Request' : 'Enviar Solicitud de Reserva';
+      btn.disabled = false;
+      alert(currentLang === 'en'
+        ? 'There was an error submitting your request. Please email us directly.'
+        : 'Hubo un error al enviar tu solicitud. Por favor envianos un correo directamente.');
+    }
+  }
+</script>
+
+</body>
+</html>
